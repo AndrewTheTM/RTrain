@@ -1,0 +1,63 @@
+---
+title: "RMarkdown Example"
+author: "Andrew Rohne"
+date: "June 29, 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+# You MUST call your libraries, this will run outside of your current environment!
+library(ggplot2)
+library(scales)
+library(dplyr)
+library(kableExtra)
+
+# This is generally the best place to input data (etc)...
+trip = read.csv("data\\trips.csv")
+trip$tripTime = trip$finalArriveMinute - trip$finalDepartMinute
+hh = read.csv("data\\HHList.csv")
+
+```
+
+## Autos Per Household
+
+The tables that would generally be shown here are pretty lacking, we'll use the kableExtra package to make pretty ones.
+
+```{r autoshh, echo=FALSE}
+# The echo=FALSE part of the line above ensures that the code is not output to the resulting document. 
+
+print("But you can print stuff out")
+
+
+
+hh.autos = hh %>%
+  group_by(Autos = numAuto) %>%
+  summarize(Households = n())
+
+print(paste("Even stuff with", nrow(hh.autos), "data"))
+
+hh.autos
+
+knitr::kable(hh.autos, "html")
+
+knitr::kable(hh.autos, "html") %>%
+  kable_styling(bootstrap_options = c("striped", "hover"))
+
+```
+
+## Trip Length Frequency
+
+This is an R Markdown document. 
+
+```{r tlf, echo=FALSE}
+ggplot(trip, aes(x = tripTime, y = stat(density))) + geom_freqpoly(binwidth = 1) +
+  ggtitle("Trip Length Frequency", "2015 C_D Model") +
+  xlab("Trip Time (Minutes)") + ylab("Percent of Trips") +
+  scale_y_continuous(label = percent)
+```
+
+We can also put r statements in line, such as if we wanted to put the mean trip length frequency, which is `r round(mean(trip$tripTime), 2)` minutes. Note the use of back-ticks (to the left of the '1' button on the keyboard).
+
+

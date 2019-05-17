@@ -1,0 +1,30 @@
+Final words
+
+R is capable of all statistical operations used by travel modelers including:
+
+T-test, ANOVA, chi-square test (t.test, anova, chisq.test commands)
+
+Linear modeling (lm command)
+
+Post-stratification survey weighting ("raking") (survey package, see https://www.r-bloggers.com/survey-computing-your-own-post-stratification-weights-in-r/)
+
+Survey imputation (MASS, mice package)
+
+Gravity model (gravity package, complex)
+
+Logit model estimation (binomial/multinomial and nested, maybe GEV; cross-nested might not)(mlogit package, rsghb package)
+
+Machine learning modelling (SVM, KNN, Bayesian, decision trees, random forests, neural networks, many more)(many packages)(caret package)
+
+Monte Carlo Simulation (MonteCarlo package)
+
+Markov Chain Monte Carlo Simulation (see https://nicercode.github.io/guides/mcmc/)
+
+Gibbs Sampling (see https://stats.stackexchange.com/questions/266665/gibbs-sampler-examples-in-r)
+
+Genetic Algorithms (GA package)
+
+Some GIS Geoprocessing (sf package, see https://geocompr.robinlovelace.net/intro.html and https://r-arcgis.github.io/)
+
+R can read and write nearly all formats in use by travel modelers except proprietary matrix files (Cube .mat and Tranplan .bin, for example), and in many cases, those can be converted to OMX and read in R (see https://github.com/osPlanning/omx-r and https://github.com/gregmacfarlane/omxr)
+
